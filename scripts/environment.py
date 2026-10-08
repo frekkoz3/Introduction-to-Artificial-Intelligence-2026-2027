@@ -1,13 +1,13 @@
 import gymnasium as gym
 from gymnasium import spaces
 from scripts import *
-import os
+from pathlib import Path
 import numpy as np
 import pygame
 
 from scripts.setting import *
 
-RESOURCES_PATH = "scripts/resources/"
+RESOURCES_PATH = Path(__file__).resolve().parent / "resources"
 SEED = 0
 
 class VacuumWorld(gym.Env):
@@ -77,7 +77,7 @@ class VacuumWorld(gym.Env):
         self.observation_type = observation_type
 
         self.max_step = max_step
-        self.difficulty = max(0, min(difficulty, 3))
+        self.difficulty = difficulty
 
         self.n_obstacles = n_obstacles
         self.n_dirt = n_dirt
@@ -94,9 +94,9 @@ class VacuumWorld(gym.Env):
             # 0 = clean floor
             # 1 = dirt
             # 2 = wall
-            # 3 = vacuum
+            # 3 = vacuum, 3.5 = vacuum on dirt
             self.observation_space = spaces.Box(
-                low=0, high=4, shape=(self.setting.grid_height, self.setting.grid_width), dtype=np.uint8
+                low=0, high=4, shape=(self.setting.grid_height, self.setting.grid_width), dtype=np.float32
             )
 
         self.window = None
@@ -137,7 +137,7 @@ class VacuumWorld(gym.Env):
         if self.window is not None or self.canvas is not None:
             return
 
-        font_path = f"{RESOURCES_PATH}font/minecraft/Minecraft.ttf"
+        font_path = RESOURCES_PATH / "font" / "minecraft" / "Minecraft.ttf"
         
         try:
             self.font = pygame.font.Font(font_path, 16)
@@ -171,7 +171,7 @@ class VacuumWorld(gym.Env):
             components = ["cleaner", "dirt", "floor"]
 
             for comp in components:
-                self.sprites[f"component_{comp}"] = load_sp(os.path.join(RESOURCES_PATH, "components", f"{comp}.png"))
+                self.sprites[f"component_{comp}"] = load_sp(RESOURCES_PATH / "components" / f"{comp}.png")
 
             self.sprites_loaded = True
 
@@ -204,6 +204,7 @@ class VacuumWorld(gym.Env):
 
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
+        self._setup_window()
 
         self.score = 0
         self.total_step = 0
@@ -252,17 +253,13 @@ class VacuumWorld(gym.Env):
             self.floor_background = pygame.Surface((self.setting.width, self.setting.height))
             # render the house layout (without dirts or anything)
             floor_sprite = self.sprites["component_floor"]
-            if floor_sprite is not None:
-                for x in range(self.setting.grid_height):
-                    for y in range(self.setting.grid_width):
-                        position = (x * self.setting.cell_size, y * self.setting.cell_size)
-                        self.floor_background.blit(self.sprites["component_floor"], position)
-
-                        if floor_sprite is not None:
-                            self.floor_background.blit(floor_sprite, position )
-
-                        else:
-                            pygame.draw.rect(self.floor_background, (180, 180, 180), (*position, self.setting.cell_size, self.setting.cell_size))
+            for x in range(self.setting.grid_width):
+                for y in range(self.setting.grid_height):
+                    position = (x * self.setting.cell_size, y * self.setting.cell_size)
+                    if floor_sprite is not None:
+                        self.floor_background.blit(floor_sprite, position)
+                    else:
+                        pygame.draw.rect(self.floor_background, (180, 180, 180), (*position, self.setting.cell_size, self.setting.cell_size))
 
             for x, y in self.walls:
                 position = (x * self.setting.cell_size, y * self.setting.cell_size)
@@ -270,33 +267,30 @@ class VacuumWorld(gym.Env):
                 pygame.draw.rect(self.floor_background, (20, 20, 20), (*position, self.setting.cell_size, self.setting.cell_size), width=2)   
 
     def _get_obs(self, done = False):
-        if done:
-            return self.death_state()
+        # Terminal observations use the same representation as other states.
         if self.observation_type == ObservationType.IMAGE:
             frame = self._render_frame()
-            if self.render_mode == RenderMode.RGB_ARRAY:
-                # rescale pixels in [0, 1]
-                frame = frame.astype(np.float32) / 255.0
             return frame
         else:
             # the grid is done such that
             # 0 stands for clean floor
             # 1 stands for dirty floor
             # 2 stands for wall
-            # 3 stands for vacuum cleaner
+            # 3 stands for vacuum cleaner, 3.5 for vacuum cleaner on dirt
             # other numbers will stand for other things
-            grid = np.zeros((self.setting.grid_width, self.setting.grid_height), dtype=np.uint8)
+            grid = np.zeros((self.setting.grid_height, self.setting.grid_width), dtype=np.float32)
 
             for x, y in self.dirts:
-                grid[x, y] = 1
+                grid[y, x] = 1
 
             for x, y in self.walls:
-                grid[x, y] = 2
+                grid[y, x] = 2
             
             x, y = self.vacuum
-            grid[x, y] = 3
+            grid[y, x] = 3
             if self.vacuum in self.dirts:
-                grid[x, y] = 3.5 # special case
+                grid[y, x] = 3.5 # special case
+
 
             return grid
 

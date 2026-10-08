@@ -31,7 +31,7 @@ Once Git is installed, you need to clone the course repository. Cloning means cr
 
 First, open the repository page in your browser and copy its URL. To help you, here the URL:
 
-[Repository URL](...)
+[Repository URL](https://github.com/frekkoz3/Introduction-to-Artificial-Intelligence-2026-2027)
 
 Then open a terminal and move to the folder where you want to keep the course:
 
@@ -42,7 +42,8 @@ cd path/to/where/you/want
 And then just clone the repository:
 
 ```bash
-git clone https://github.com/frekkoz3/Introduction-to-Artificial-Intelligence-2026-2027 .
+git clone https://github.com/frekkoz3/Introduction-to-Artificial-Intelligence-2026-2027.git
+cd Introduction-to-Artificial-Intelligence-2026-2027
 ```
 
 Open the folder from VS Code (as simple as breathing!):
@@ -76,17 +77,17 @@ VS Code as a native support for Git, so once everything is installed you could u
 
 I assume that most of you already have Python installed.
 
-For this course, I recommend using a Python version between:
-
-$\texttt{Python 3.8}$ ≤ version ≤ $\texttt{Python 3.12}$
-
-In particular, **Python 3.12** is the version I recommend for this course.
+Use **Python 3.12.x** for this course. This matches the repository's default uv environment and is supported by the pinned dependencies. Python 3.8–3.11 cannot install the full dependency set.
 
 If you do not have Python installed, you can download it from the official Python website:
 
 [Python Downloads](https://www.python.org/downloads/).
 
 ## Virtual Environment
+
+If you have already followed the [uv quick start](../README.md#quick-start-with-uv-and-jupyterlab), select the existing `.venv` through **Select Another Kernel → Python Environments**. Otherwise, follow the original environment creation steps below.
+
+Make sure the Microsoft Python and Jupyter extensions are installed in VS Code.
 
 And now we will see how to setup a the virtual enviornment!
 
