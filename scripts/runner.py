@@ -13,35 +13,37 @@ from scripts.agent import Agent
 def run_episode(env: gym.Env, agent: Agent, render: bool = True) -> float:
     """Run one episode and return the accumulated reward."""
 
-    observation, info = env.reset()
-
-    if render:
-        env.render()
-
-    total_reward = 0.0
-
-    terminated = False
-    truncated = False
-
-    while not terminated and not truncated:
-        
-        action = agent.act(observation)
-
-        observation, reward, terminated, truncated, info = env.step(action)
+    try:
+        observation, info = env.reset()
 
         if render:
             env.render()
 
-        if env.window is not None:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    env.close()
-                    truncated = True
+        total_reward = 0.0
 
-        total_reward += reward
+        terminated = False
+        truncated = False
 
-    env.close()
-    return total_reward
+        while not terminated and not truncated:
+
+            action = agent.act(observation)
+
+            observation, reward, terminated, truncated, info = env.step(action)
+
+            if render:
+                env.render()
+
+            if env.window is not None:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        env.close()
+                        truncated = True
+
+            total_reward += reward
+
+        return total_reward
+    finally:
+        env.close()
 
 def human_testing(env: gym.Env):
     """Allows a human player to control the environment frame-by-frame."""

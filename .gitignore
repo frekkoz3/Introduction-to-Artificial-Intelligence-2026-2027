@@ -1,14 +1,48 @@
-# virtual environment
-venv
-.venv
-env
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+.jupyter/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local environment variables
 .env
+.env.*
+!.env.example
 
-# vs code specific
-.vscode
+# Temporary files
+*.log
+*.tmp
 
-# python related cache
-__pycache__
-
-# solutions
-notebooks/solutions/0_setup.ipynb
+# Unpublished setup solution; remove this exact rule when ready to publish.
+/notebooks/solutions/0_setup.ipynb

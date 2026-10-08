@@ -1,0 +1,17 @@
+[project]
+name = "intro-artificial-intelligence-2026-2027"
+version = "0.1.0"
+description = "Teaching material for Introduction to Artificial Intelligence 2026/2027"
+readme = "README.md"
+authors = [
+    { name = "Manuel Magnabosco", email = "magn.manuel05@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "gymnasium==1.3.0",
+    "ipykernel==7.4.0",
+    "jupyterlab==4.6.4",
+    "matplotlib==3.11.2",
+    "numpy==2.5.3",
+    "pygame==2.6.1",
+]

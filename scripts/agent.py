@@ -6,10 +6,9 @@ import gymnasium as gym
 class Agent(ABC):
     """Base class for agents that will interact with Gymnasium environmet"""
 
-    @abstractmethod
     def __init__(self, env : gym.Env):
         """Setup the basic knowledge of the environment."""
-        raise NotImplementedError
+        self.action_space = env.action_space
     
     @abstractmethod
     def act(self, observation: Any):
