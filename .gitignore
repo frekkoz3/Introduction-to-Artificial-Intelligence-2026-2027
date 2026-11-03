@@ -45,5 +45,4 @@ Thumbs.db
 *.tmp
 
 # Unpublished setup solution; remove this exact rule when ready to publish.
-notebooks/solutions/4_csp.ipynb
-notebooks/solutions/colormap.gif
+
