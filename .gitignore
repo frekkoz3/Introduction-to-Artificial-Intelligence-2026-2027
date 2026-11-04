@@ -46,3 +46,4 @@ Thumbs.db
 
 # Unpublished setup solution; remove this exact rule when ready to publish.
 
+projects/taxi/submission.py
