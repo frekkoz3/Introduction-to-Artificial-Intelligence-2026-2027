@@ -4,7 +4,7 @@ Welcome to the **Taxi Grid World** assignment! In this project, you will impleme
 
 ---
 
-## 1. Overview & Problem Definition
+## Overview & Problem Definition
 
 The environment represents a grid city map containing obstacles (walls), varying terrain types, a passenger pickup location, and a final dropoff location.
 
@@ -17,7 +17,7 @@ The goal is achieved when the passenger is successfully delivered and the taxi s
 
 ---
 
-## 2. State Representation
+## State Representation
 
 To apply graph search algorithms like BFS, Uniform Cost Search (UCS), or $A^*$, you need to track state transitions. The state in `TaxiWorld` is represented as a 5-tuple:
 
@@ -33,7 +33,7 @@ $$\text{State} = (x, y, \text{status}, \text{passenger\_loc}, \text{destination\
 
 ---
 
-## 3. Actions & Movement Costs
+## Actions & Movement Costs
 
 The action space consists of 6 discrete actions:
 
@@ -62,7 +62,7 @@ Different grid cells incur different traverse costs:
 
 ---
 
-## 4. Key Environment Methods for Search
+## Key Environment Methods for Search
 
 You can interface with the environment directly through built-in helper methods designed specifically for search algorithms without mutating the live state:
 
@@ -83,7 +83,7 @@ You can access station coordinates via `env.stations`:
 
 ---
 
-## 5. Example
+## Example
 
 Here is a simple example showing how to "play" the game using `WASD` and `EQ` as keys for movements and for pipckup and dropoff (look directly at the code in `taxi\runner.py` for more references).
 
@@ -96,9 +96,9 @@ Use this example just to explore the environment and think about how to solve th
 
 ---
 
-## 6. Your work
+## Your work
 
-You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). Add your `name` `surname` and `student id` in the header of the file.
+You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). Add your `name` `surname` and `student id` in the header of the file. Later you will upload it to Teams.
 
 You can test your submission running
 
