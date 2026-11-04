@@ -85,20 +85,22 @@ You can access station coordinates via `env.stations`:
 
 ## 5. Example
 
-Here is a simple example showing how to "play" the game using `WASD` and `EQ` as keys for movements and for pipckup and dropoff.
+Here is a simple example showing how to "play" the game using `WASD` and `EQ` as keys for movements and for pipckup and dropoff (look directly at the code in `taxi\runner.py` for more references).
 
 ```bash
 cd projects
 py -m taxi.runner
 ```
 
-Use it just to explore the environment and think about how to solve using the search framework.
+Use this example just to explore the environment and think about how to solve the problem within the search framework.
+
+---
 
 ## 6. Your work
 
-You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). Add your name surname and student id in the header of the file.
+You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). Add your `name` `surname` and `student id` in the header of the file.
 
-You can your submission running
+You can test your submission running
 
 ```bash
 cd projects
