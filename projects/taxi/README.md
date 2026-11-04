@@ -98,7 +98,7 @@ Use this example just to explore the environment and think about how to solve th
 
 ## Your work
 
-You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). Add your `name` `surname` and `student id` in the header of the file. Later you will upload it to Teams.
+You must implement a file named `submsission.py` where you implement an agent (following the structure present in `agent.py`). In order to make it easier for you, you can literally copy and paste the code in `agent.py` to begin with. Later modified where needed! Add your `name` `surname` and `student id` in the header of the file. Later you will upload it to Teams.
 
 You can test your submission running
 
