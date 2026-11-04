@@ -38,6 +38,7 @@ def human_testing(env: gym.Env):
     env.close()
 
 if __name__ == '__main__':
+    
     from taxi.environment import *
 
     env = TaxiWorld(render_mode=RenderMode.HUMAN)
