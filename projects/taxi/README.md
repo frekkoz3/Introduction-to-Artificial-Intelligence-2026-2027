@@ -102,6 +102,23 @@ You must implement a file named `submsission.py` where you implement an agent (f
 
 **It is important that you add** your `name` `surname` and `student id` in the header of the file (first line in the format NAME SURNAME STUDENT-ID). Later you will upload the file to Teams.
 
+Really important thing: you can change whatever you like, **but**:
+
+- you **must not change** the definitions of the methods
+- you **must use a search algorithm** as the one seen in lectures to solve the task
+- you **cannot use the optimal path as heuristic**
+- you must **describe your decision with comments** here and there
+- you must **not use only LLM / agents** to solve the task. If you do it, we will know and assign 0 points to your work.
+
+The solution will be evaluated based on:
+
+- does your algorithm find a solution?
+- does your algorithm find the optimal solution? (in terms of cumulative cost)
+- how much time does your algorithm take to find the solution?
+
+In order to obtain the maximum point finding the optimal solution is sufficient.
+The ones that do the best in terms of performances will get additional points.
+
 You can test your submission running
 
 ```bash
