@@ -20,7 +20,8 @@ def human_testing(env: gym.Env):
     env.render()
 
     while not done and not truncated:
-        action = 4
+
+        action = 4 # default pickup
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
