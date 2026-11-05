@@ -44,8 +44,9 @@ def run(env: gym.Env, agent : Agent):
         steps += 1
         obs, reward, done, truncated, info = env.step(action)
         cumulative_cost += (-reward)
-        
-        env.render()
+
+        if not done and not truncated:
+            env.render()
 
     summary["steps"] = steps
     summary["cost"] = cumulative_cost
@@ -53,7 +54,6 @@ def run(env: gym.Env, agent : Agent):
     summary["optimal_solution"] = (cumulative_cost == 71)
 
     env.close()
-    
     return summary
 
 if __name__ == '__main__':
