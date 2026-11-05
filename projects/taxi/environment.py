@@ -150,7 +150,7 @@ class TaxiWorld(gym.Env):
             dtype=np.float32,
         )
 
-        self.taxi = (1, 1)
+        self.taxi = (0, 0)
         self.passenger_status = PASSENGER_WAITING
         self.passenger_loc = 0
         self.destination_loc = 1
@@ -322,7 +322,7 @@ class TaxiWorld(gym.Env):
         self.score = 0
         self.route = []
 
-        self.taxi = (1, 1)
+        self.taxi = (0, 0)
         self.passenger_status = PASSENGER_WAITING
         self.passenger_loc = 0
         self.destination_loc = 1
