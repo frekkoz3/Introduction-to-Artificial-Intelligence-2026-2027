@@ -51,7 +51,7 @@ def run(env: gym.Env, agent : Agent):
     summary["steps"] = steps
     summary["cost"] = cumulative_cost
     summary["solution"] = not truncated
-    summary["optimal_solution"] = (cumulative_cost == 71)
+    summary["optimal_solution"] = (cumulative_cost == 97)
 
     env.close()
     return summary
